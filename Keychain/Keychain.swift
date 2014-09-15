@@ -75,8 +75,23 @@ public class Keychain
     {
         assert(account.isValid(), "Can only update a valid account in keychain")
         
-        // TODO: Implement Me
-        return true
+        let existing:Account? = self.accountFor(account.userName)
+        if existing == nil
+        {
+            return false
+        }
+        
+        let existingAttributes = existing!.attributes()
+        existingAttributes[kSecAttrService] = self.service
+        existingAttributes[kSecAttrAccessible] = self.accessibilityAttribute()
+
+        let statusCode: OSStatus = SecItemUpdate(existingAttributes, account.attributes())
+        if statusCode != 0
+        {
+            return true
+        }
+
+        return false
     }
     
     public func remove(account: Account) -> Bool
@@ -96,15 +111,35 @@ public class Keychain
     
     public func accountFor(userName: String) -> Account
     {
-        // TODO: Implement Me
-        return Account(userName: "asdfasdf")
+        let attributes = [
+            kSecAttrService: self.service,
+            kSecAttrAccount: userName,
+            kSecAttrAccessible: self.accessibilityAttribute(),
+            kSecReturnData: kCFBooleanTrue
+        ]
+        
+        var result:Unmanaged<AnyObject>?
+        let statusCode: OSStatus = SecItemCopyMatching(attributes, &result);
+        if statusCode != 0
+        {
+            let opaque = result?.toOpaque()
+            var secretValue: NSString?
+            if let op = opaque?
+            {
+                let retrievedData = Unmanaged<NSData>.fromOpaque(op).takeUnretainedValue()
+                secretValue = NSString(data:retrievedData, encoding:NSUTF8StringEncoding)
+                return Account(userName: userName, secret: secretValue!, keychain: self)
+            }
+        }
+        
+        return Account(userName: "") // Should handle this better
     }
     
     // MARK: Private Methods
     // ========================================================
     // Private Methods
     // ========================================================
-    private func accessibilityAttribute() -> CFTypeRef
+    internal func accessibilityAttribute() -> CFTypeRef
     {
         var typeRef: CFTypeRef
         switch self.accessibility

@@ -19,6 +19,13 @@ public class Account
     // ========================================================
     // Initializers
     // ========================================================
+    public init(userName: String, secret: String, keychain: Keychain)
+    {
+        self.userName = userName
+        self.secret = secret
+        self.keychain = keychain
+    }
+
     public init(userName: String, secret: String)
     {
         self.userName = userName
@@ -57,7 +64,7 @@ public class Account
             attributes[kSecAttrAccessGroup] = accessGroup
             }
         #endif
-
+        
         return attributes;
     }
 }
