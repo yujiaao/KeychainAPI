@@ -1,6 +1,6 @@
 //
-//  Keychain.h
-//  Keychain
+//  KeychainAPI.h
+//  KeychainAPI
 //
 //  Created by Justin Williams on 9/15/14.
 //  Copyright (c) 2014 Second Gear. All rights reserved.
@@ -14,6 +14,4 @@ FOUNDATION_EXPORT double KeychainVersionNumber;
 //! Project version string for Keychain.
 FOUNDATION_EXPORT const unsigned char KeychainVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <Keychain/PublicHeader.h>
-
-
+//#import <KeychainAPI/PublicHeader.h>

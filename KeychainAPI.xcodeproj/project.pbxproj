@@ -7,17 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D065E52A19C7496F0083EC94 /* Keychain.h in Headers */ = {isa = PBXBuildFile; fileRef = D065E52919C7496F0083EC94 /* Keychain.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D065E52A19C7496F0083EC94 /* KeychainAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = D065E52919C7496F0083EC94 /* KeychainAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D065E53419C749700083EC94 /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D065E53319C749700083EC94 /* KeychainTests.swift */; };
+		D065E53E19C7498E0083EC94 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D065E53D19C7498E0083EC94 /* Keychain.swift */; };
+		D065E54019C7499F0083EC94 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = D065E53F19C7499F0083EC94 /* Account.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D065E52419C7496F0083EC94 /* Keychain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Keychain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D065E52419C7496F0083EC94 /* KeychainAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeychainAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D065E52819C7496F0083EC94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D065E52919C7496F0083EC94 /* Keychain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Keychain.h; sourceTree = "<group>"; };
-		D065E52F19C749700083EC94 /* KeychainTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KeychainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D065E52919C7496F0083EC94 /* KeychainAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainAPI.h; sourceTree = "<group>"; };
+		D065E52F19C749700083EC94 /* KeychainAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KeychainAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D065E53219C749700083EC94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D065E53319C749700083EC94 /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
+		D065E53D19C7498E0083EC94 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		D065E53F19C7499F0083EC94 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		D065E54119C74A780083EC94 /* Keychain.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Keychain.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +46,8 @@
 		D065E51A19C7496F0083EC94 = {
 			isa = PBXGroup;
 			children = (
-				D065E52619C7496F0083EC94 /* Keychain */,
+				D065E54119C74A780083EC94 /* Keychain.playground */,
+				D065E52619C7496F0083EC94 /* KeychainAPI */,
 				D065E53019C749700083EC94 /* KeychainTests */,
 				D065E52519C7496F0083EC94 /* Products */,
 			);
@@ -50,18 +56,21 @@
 		D065E52519C7496F0083EC94 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D065E52419C7496F0083EC94 /* Keychain.framework */,
-				D065E52F19C749700083EC94 /* KeychainTests.xctest */,
+				D065E52419C7496F0083EC94 /* KeychainAPI.framework */,
+				D065E52F19C749700083EC94 /* KeychainAPITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D065E52619C7496F0083EC94 /* Keychain */ = {
+		D065E52619C7496F0083EC94 /* KeychainAPI */ = {
 			isa = PBXGroup;
 			children = (
-				D065E52919C7496F0083EC94 /* Keychain.h */,
+				D065E52919C7496F0083EC94 /* KeychainAPI.h */,
+				D065E53D19C7498E0083EC94 /* Keychain.swift */,
+				D065E53F19C7499F0083EC94 /* Account.swift */,
 				D065E52719C7496F0083EC94 /* Supporting Files */,
 			);
+			name = KeychainAPI;
 			path = Keychain;
 			sourceTree = "<group>";
 		};
@@ -97,16 +106,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D065E52A19C7496F0083EC94 /* Keychain.h in Headers */,
+				D065E52A19C7496F0083EC94 /* KeychainAPI.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		D065E52319C7496F0083EC94 /* Keychain */ = {
+		D065E52319C7496F0083EC94 /* KeychainAPI */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D065E53719C749700083EC94 /* Build configuration list for PBXNativeTarget "Keychain" */;
+			buildConfigurationList = D065E53719C749700083EC94 /* Build configuration list for PBXNativeTarget "KeychainAPI" */;
 			buildPhases = (
 				D065E51F19C7496F0083EC94 /* Sources */,
 				D065E52019C7496F0083EC94 /* Frameworks */,
@@ -117,14 +126,14 @@
 			);
 			dependencies = (
 			);
-			name = Keychain;
+			name = KeychainAPI;
 			productName = Keychain;
-			productReference = D065E52419C7496F0083EC94 /* Keychain.framework */;
+			productReference = D065E52419C7496F0083EC94 /* KeychainAPI.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		D065E52E19C749700083EC94 /* KeychainTests */ = {
+		D065E52E19C749700083EC94 /* KeychainAPITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D065E53A19C749700083EC94 /* Build configuration list for PBXNativeTarget "KeychainTests" */;
+			buildConfigurationList = D065E53A19C749700083EC94 /* Build configuration list for PBXNativeTarget "KeychainAPITests" */;
 			buildPhases = (
 				D065E52B19C749700083EC94 /* Sources */,
 				D065E52C19C749700083EC94 /* Frameworks */,
@@ -134,9 +143,9 @@
 			);
 			dependencies = (
 			);
-			name = KeychainTests;
+			name = KeychainAPITests;
 			productName = KeychainTests;
-			productReference = D065E52F19C749700083EC94 /* KeychainTests.xctest */;
+			productReference = D065E52F19C749700083EC94 /* KeychainAPITests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -156,7 +165,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D065E51E19C7496F0083EC94 /* Build configuration list for PBXProject "Keychain" */;
+			buildConfigurationList = D065E51E19C7496F0083EC94 /* Build configuration list for PBXProject "KeychainAPI" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -168,8 +177,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D065E52319C7496F0083EC94 /* Keychain */,
-				D065E52E19C749700083EC94 /* KeychainTests */,
+				D065E52319C7496F0083EC94 /* KeychainAPI */,
+				D065E52E19C749700083EC94 /* KeychainAPITests */,
 			);
 		};
 /* End PBXProject section */
@@ -196,6 +205,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D065E53E19C7498E0083EC94 /* Keychain.swift in Sources */,
+				D065E54019C7499F0083EC94 /* Account.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +309,7 @@
 		D065E53819C749700083EC94 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -305,14 +317,16 @@
 				INFOPLIST_FILE = Keychain/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = KeychainAPI;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		D065E53919C749700083EC94 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -320,7 +334,7 @@
 				INFOPLIST_FILE = Keychain/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = KeychainAPI;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -338,7 +352,7 @@
 				);
 				INFOPLIST_FILE = KeychainTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = KeychainAPITests;
 			};
 			name = Debug;
 		};
@@ -351,14 +365,14 @@
 				);
 				INFOPLIST_FILE = KeychainTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = KeychainAPITests;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D065E51E19C7496F0083EC94 /* Build configuration list for PBXProject "Keychain" */ = {
+		D065E51E19C7496F0083EC94 /* Build configuration list for PBXProject "KeychainAPI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D065E53519C749700083EC94 /* Debug */,
@@ -367,21 +381,23 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D065E53719C749700083EC94 /* Build configuration list for PBXNativeTarget "Keychain" */ = {
+		D065E53719C749700083EC94 /* Build configuration list for PBXNativeTarget "KeychainAPI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D065E53819C749700083EC94 /* Debug */,
 				D065E53919C749700083EC94 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		D065E53A19C749700083EC94 /* Build configuration list for PBXNativeTarget "KeychainTests" */ = {
+		D065E53A19C749700083EC94 /* Build configuration list for PBXNativeTarget "KeychainAPITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D065E53B19C749700083EC94 /* Debug */,
 				D065E53C19C749700083EC94 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
