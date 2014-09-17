@@ -11,9 +11,10 @@ import Security
 
 public class Account
 {
-    private var keychain : Keychain?
     public var userName : String
-    public var secret: String
+    public var secret: String?
+    
+    private var keychain : Keychain?
     
     // MARK: Initializers
     // ========================================================
@@ -35,7 +36,6 @@ public class Account
     public init(userName: String)
     {
         self.userName = userName
-        self.secret = ""
     }
     
     // MARK: Public Methods
@@ -49,21 +49,17 @@ public class Account
     
     public func attributes() -> NSMutableDictionary
     {
-        let passwordData: NSData = self.secret.dataUsingEncoding(NSUTF8StringEncoding)!
-        
         var attributes = [
-            kSecClass : kSecClassInternetPassword,
+            kSecClass : kSecClassGenericPassword,
             kSecAttrAccount : userName,
-            kSecValueData : passwordData
         ] as NSMutableDictionary
         
-        // Access groups aren't supported on iOS Simualtor still? What year is this?
-        #if arch(i386) && os(iOS)
-            if !accessGroup?.isEmpty?
-            {
-            attributes[kSecAttrAccessGroup] = accessGroup
-            }
-        #endif
+        var passwordData: NSData = NSData()
+        if let password = self.secret
+        {
+            passwordData = password.dataUsingEncoding(NSUTF8StringEncoding)!
+            attributes[kSecValueData] = passwordData
+        }
         
         return attributes;
     }

@@ -37,7 +37,7 @@ public enum Accessibility: Int
 public class Keychain
 {
     private var service: String
-    private var accessGroup: String
+//    private var accessGroup: String?
     private var accessibility: Accessibility
     
     // MARK: Initializers
@@ -47,7 +47,12 @@ public class Keychain
     public init(service: String, accessibility: Accessibility)
     {
         self.service = service
-        self.accessGroup = service
+        
+//        // Access groups aren't supported on iOS Simualtor still? What year is this?
+//        #if arch(i386) && os(iOS)
+//            self.accessGroup = service
+//        #endif
+
         self.accessibility = accessibility
     }
     
@@ -63,7 +68,7 @@ public class Keychain
         attributes[kSecAttrAccessible] = self.accessibilityAttribute()
         
         let statusCode: OSStatus = SecItemAdd(attributes, nil);
-        if statusCode != 0
+        if statusCode == 0
         {
             return true
         }
@@ -99,7 +104,7 @@ public class Keychain
         let attributes = account.attributes();
         attributes[kSecAttrService] = self.service
         attributes[kSecAttrAccessible] = self.accessibilityAttribute()
-        
+
         let statusCode: OSStatus = SecItemDelete(attributes);
         if statusCode != 0
         {
@@ -112,15 +117,18 @@ public class Keychain
     public func accountFor(userName: String) -> Account
     {
         let attributes = [
+            kSecClass : kSecClassGenericPassword,
             kSecAttrService: self.service,
             kSecAttrAccount: userName,
             kSecAttrAccessible: self.accessibilityAttribute(),
             kSecReturnData: kCFBooleanTrue
-        ]
+        ] as NSMutableDictionary
+        
+        attributes.removeObjectForKey(kSecValueData)
         
         var result:Unmanaged<AnyObject>?
         let statusCode: OSStatus = SecItemCopyMatching(attributes, &result);
-        if statusCode != 0
+        if statusCode == 0
         {
             let opaque = result?.toOpaque()
             var secretValue: NSString?
