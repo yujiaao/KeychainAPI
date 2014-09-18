@@ -6,11 +6,7 @@ let keychain: Keychain = Keychain(service: "com.secondgear.myapp", accessibility
 let userAccount = Account(userName: "justinw@me.com", secret: "lovesecretsexgod")
 keychain.add(userAccount)
 
-let fetchedAccount:Account? = keychain.accountFor("justinw@me.com")
-if (fetchedAccount != nil)
-{
-    fetchedAccount?.secret = "newpassword"
-    keychain.update(fetchedAccount!)
-}
-
-keychain.remove(fetchedAccount!);
+let fetchedAccount:Account = keychain.accountFor("justinw@me.com")
+fetchedAccount.secret = "newpassword"
+keychain.update(fetchedAccount)
+keychain.remove(fetchedAccount)
