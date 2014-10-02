@@ -49,21 +49,16 @@ public class Account
     
     public func attributes() -> NSMutableDictionary
     {
-        let GenericPasswordAttribute: String! = kSecClassGenericPassword as String
-        let AccountAttribute: String! = kSecAttrAccount as String
-        let ClassAttribute: String! = kSecClass as String
-        let ValueDataAttribute: String! = kSecValueData as String
-        
         var attributes = [
-            ClassAttribute : GenericPasswordAttribute,
-            AccountAttribute : userName,
+            kSecClass : kSecClassGenericPassword,
+            kSecAttrAccount : userName,
         ] as NSMutableDictionary
         
         var passwordData: NSData = NSData()
         if let password = self.secret
         {
             passwordData = password.dataUsingEncoding(NSUTF8StringEncoding)!
-            attributes[ValueDataAttribute] = passwordData
+            attributes[kSecValueData] = passwordData
         }
         
         return attributes;

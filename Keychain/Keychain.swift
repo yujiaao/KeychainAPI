@@ -64,12 +64,8 @@ public class Keychain
     {
         assert(account.isValid(), "Can only add a valid account to keychain")
         let attributes = account.attributes();
-        
-        let SecServiceAttribute: String! = kSecAttrService as String
-        let SecAccessibleAttribute: String! = kSecAttrAccessible as String
-        
-        attributes[SecServiceAttribute] = self.service
-        attributes[SecAccessibleAttribute] = self.accessibilityAttribute()
+        attributes[kSecAttrService] = self.service
+        attributes[kSecAttrAccessible] = self.accessibilityAttribute()
         
         let statusCode: OSStatus = SecItemAdd(attributes, nil);
         if statusCode == 0
@@ -84,9 +80,6 @@ public class Keychain
     {
         assert(account.isValid(), "Can only update a valid account in keychain")
         
-        let SecServiceAttribute: String! = kSecAttrService as String
-        let SecAccessibleAttribute: String! = kSecAttrAccessible as String
-        
         let existing:Account? = self.accountFor(account.userName)
         if existing == nil
         {
@@ -94,8 +87,8 @@ public class Keychain
         }
         
         let existingAttributes = existing!.attributes()
-        existingAttributes[SecServiceAttribute] = self.service
-        existingAttributes[SecAccessibleAttribute] = self.accessibilityAttribute()
+        existingAttributes[kSecAttrService] = self.service
+        existingAttributes[kSecAttrAccessible] = self.accessibilityAttribute()
 
         let statusCode: OSStatus = SecItemUpdate(existingAttributes, account.attributes())
         if statusCode != 0
@@ -108,12 +101,9 @@ public class Keychain
     
     public func remove(account: Account) -> Bool
     {
-        let SecServiceAttribute: String! = kSecAttrService as String
-        let SecAccessibleAttribute: String! = kSecAttrAccessible as String
-
         let attributes = account.attributes();
-        attributes[SecServiceAttribute] = self.service
-        attributes[SecAccessibleAttribute] = self.accessibilityAttribute()
+        attributes[kSecAttrService] = self.service
+        attributes[kSecAttrAccessible] = self.accessibilityAttribute()
 
         let statusCode: OSStatus = SecItemDelete(attributes);
         if statusCode != 0
@@ -126,20 +116,12 @@ public class Keychain
     
     public func accountFor(userName: String) -> Account
     {
-        let GenericPasswordAttribute: String! = kSecClassGenericPassword as String
-        let AccountAttribute: String! = kSecAttrAccount as String
-        let ClassAttribute: String! = kSecClass as String
-        let ValueDataAttribute: String! = kSecValueData as String
-        let SecServiceAttribute: String! = kSecAttrService as String
-        let SecAccessibleAttribute: String! = kSecAttrAccessible as String
-        let ReturnDataAttribute: String! = kSecReturnData as String
-        
         let attributes = [
-            ClassAttribute : GenericPasswordAttribute,
-            SecServiceAttribute: self.service,
-            AccountAttribute: userName,
-            SecAccessibleAttribute: self.accessibilityAttribute(),
-            ReturnDataAttribute: kCFBooleanTrue
+            kSecClass : kSecClassGenericPassword,
+            kSecAttrService: self.service,
+            kSecAttrAccount: userName,
+            kSecAttrAccessible: self.accessibilityAttribute(),
+            kSecReturnData: kCFBooleanTrue
         ] as NSMutableDictionary
         
         attributes.removeObjectForKey(kSecValueData)
