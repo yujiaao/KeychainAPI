@@ -150,11 +150,11 @@ public class Keychain
         {
             let opaque = result?.toOpaque()
             var secretValue: NSString?
-            if let op = opaque?
+            if let op = opaque
             {
                 let retrievedData = Unmanaged<NSData>.fromOpaque(op).takeUnretainedValue()
                 secretValue = NSString(data:retrievedData, encoding:NSUTF8StringEncoding)
-                return Account(userName: userName, secret: secretValue!, keychain: self)
+                return Account(userName: userName, secret: secretValue! as String, keychain: self)
             }
         }
         
