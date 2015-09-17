@@ -144,18 +144,22 @@ public class Keychain
         
         attributes.removeObjectForKey(kSecValueData)
         
-        var result:Unmanaged<AnyObject>?
+        var result:AnyObject?
         let statusCode: OSStatus = SecItemCopyMatching(attributes, &result);
-        if statusCode == 0
+        if statusCode == noErr
         {
-            let opaque = result?.toOpaque()
+            //let opaque = result as? NSData.toOpaque()
+            
             var secretValue: NSString?
-            if let op = opaque
-            {
-                let retrievedData = Unmanaged<NSData>.fromOpaque(op).takeUnretainedValue()
-                secretValue = NSString(data:retrievedData, encoding:NSUTF8StringEncoding)
-                return Account(userName: userName, secret: secretValue! as String, keychain: self)
-            }
+            let restriveData = result as? NSData
+            secretValue  = NSString(data: (restriveData)!, encoding: NSUTF8StringEncoding)
+            return Account(userName: userName,secret:secretValue! as String, keychain:self)
+//            if let op = opaque
+//            {
+//                let retrievedData = Unmanaged<NSData>.fromOpaque(op).takeUnretainedValue()
+//                secretValue = NSString(data:retrievedData, encoding:NSUTF8StringEncoding)
+//                return Account(userName: userName, secret: secretValue! as String, keychain: self)
+//            }
         }
         
         return Account(userName: "") // Should handle this better

@@ -54,7 +54,7 @@ public class Account
         let ClassAttribute: String! = kSecClass as String
         let ValueDataAttribute: String! = kSecValueData as String
         
-        var attributes = [
+        let attributes = [
             ClassAttribute : GenericPasswordAttribute,
             AccountAttribute : userName,
         ] as NSMutableDictionary
