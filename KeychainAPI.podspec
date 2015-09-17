@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.name         = "KeychainAPI"
   s.version      = "0.0.2"
-  s.summary      = "A short description of KeychainAPI."
+  s.summary      = "KeychainAPI security access store value for iOS."
 
   s.description  = <<-DESC
                    A longer description of KeychainAPI in Markdown format.
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
                    * Finally, don't worry about the indent, CocoaPods strips it!
                    DESC
 
-  s.homepage     = "http://git.issll.com/objective-c/keychainapi"
+  s.homepage     = "http://github.com/yujiaao/KeychainAPI"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
