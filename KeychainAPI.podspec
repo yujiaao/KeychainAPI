@@ -79,7 +79,8 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "http://git.issll.com/objective-c/keychainapi.git" }
+ #s.source       = { :git => "http://git.issll.com/objective-c/keychainapi.git" }
+ s.source       = { :git => "https://github.com/yujiaao/KeychainAPI.git" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

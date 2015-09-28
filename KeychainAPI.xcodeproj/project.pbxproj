@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		89C0A0451BB93B6B00C0558B /* KeychainAPI.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 89C0A0441BB93B6B00C0558B /* KeychainAPI.podspec */; settings = {ASSET_TAGS = (); }; };
 		D065E52A19C7496F0083EC94 /* KeychainAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = D065E52919C7496F0083EC94 /* KeychainAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D065E53419C749700083EC94 /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D065E53319C749700083EC94 /* KeychainTests.swift */; };
 		D065E53E19C7498E0083EC94 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D065E53D19C7498E0083EC94 /* Keychain.swift */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		89C0A0441BB93B6B00C0558B /* KeychainAPI.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KeychainAPI.podspec; sourceTree = "<group>"; };
 		D065E52419C7496F0083EC94 /* KeychainAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeychainAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D065E52819C7496F0083EC94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D065E52919C7496F0083EC94 /* KeychainAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainAPI.h; sourceTree = "<group>"; };
@@ -46,6 +48,7 @@
 		D065E51A19C7496F0083EC94 = {
 			isa = PBXGroup;
 			children = (
+				89C0A0441BB93B6B00C0558B /* KeychainAPI.podspec */,
 				D065E54119C74A780083EC94 /* Keychain.playground */,
 				D065E52619C7496F0083EC94 /* KeychainAPI */,
 				D065E53019C749700083EC94 /* KeychainTests */,
@@ -190,6 +193,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89C0A0451BB93B6B00C0558B /* KeychainAPI.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
