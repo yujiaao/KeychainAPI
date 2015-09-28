@@ -90,20 +90,30 @@ public class Keychain
         let existing:Account? = self.accountFor(account.userName)
         if existing == nil
         {
-            return false
+        //    return false
+        }else
+        {
+            self.remove(existing!);
         }
         
-        let existingAttributes = existing!.attributes()
-        existingAttributes[SecServiceAttribute] = self.service
-        existingAttributes[SecAccessibleAttribute] = self.accessibilityAttribute()
-
-        let statusCode: OSStatus = SecItemUpdate(existingAttributes, account.attributes())
-        if statusCode != 0
-        {
-            return true
-        }
-
-        return false
+//        let existingAttributes = existing!.attributes()
+//        existingAttributes[SecServiceAttribute] = self.service
+//        existingAttributes[SecAccessibleAttribute] = self.accessibilityAttribute()
+//        
+//        let attributes = account.attributes()
+        
+         //@TODO SecItemUpdate  总是返回-50，暂时用移除+添加代替更新
+        
+       return self.add(account);
+        
+//        let statusCode: OSStatus = SecItemUpdate(existingAttributes, attributes)
+//        if statusCode != 0
+//        {
+//            print(Status.fromOSStatus(statusCode));
+//            return true
+//        }
+//
+//        return false
     }
     
     public func remove(account: Account) -> Bool
@@ -117,11 +127,11 @@ public class Keychain
 
         let statusCode: OSStatus = SecItemDelete(attributes);
         
-        if (statusCode != noErr || statusCode != errSecItemNotFound){
+        if (statusCode != noErr && statusCode != errSecItemNotFound){
             print("Delete \(account.userName) failed: \(statusCode) (ignored)" )
         }
     
-        if statusCode != 0
+        if statusCode == noErr
         {
             return true
         }
@@ -207,5 +217,26 @@ public class Keychain
         }
         
         return typeRef;
+    }
+    
+    
+    
+    enum Status: Int32 {
+        // Swift won't allow you to specify a non-literal value below, hence the literal numbers to match errSec*.
+        case Success = 0 // errSecSuccess
+        case Unimplemented = -4 // errSecUnimplemented
+        case Param = -50 // errSecParam
+        case Allocate = -108 // errSecAllocate
+        case NotAvailable = -25291 // errSecNotAvailable
+        case AuthFailed = -25293 // errSecAuthFailed
+        case DuplicateItem = -25299 // errSecDuplicateItem
+        case ItemNotFound = -25300 // errSecItemNotFound
+        case InteractionNotAllowed = -25308 // errSecInteractionNotAllowed
+        case Decode = -26275 // errSecDecode
+        case Other = -30000
+        
+        static func fromOSStatus(rawStatus: OSStatus) -> Status {
+            return Status(rawValue: rawStatus) ?? .Other
+        }
     }
 }
