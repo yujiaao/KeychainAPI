@@ -116,6 +116,11 @@ public class Keychain
         attributes[SecAccessibleAttribute] = self.accessibilityAttribute()
 
         let statusCode: OSStatus = SecItemDelete(attributes);
+        
+        if (statusCode != noErr || statusCode != errSecItemNotFound){
+            print("Delete \(account.userName) failed: \(statusCode) (ignored)" )
+        }
+    
         if statusCode != 0
         {
             return true
@@ -184,7 +189,12 @@ public class Keychain
             typeRef = kSecAttrAccessibleAlways
             
         case .PasscodeSetThisDeviceOnly:
-            typeRef = kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly
+            if #available(iOS 8.0, *) {
+                typeRef = kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly
+            } else {
+                // Fallback on earlier versions
+                typeRef = kSecAttrAccessibleAlways
+            }
             
         case .WhenUnlockedThisDeviceOnly:
             typeRef = kSecAttrAccessibleWhenUnlockedThisDeviceOnly

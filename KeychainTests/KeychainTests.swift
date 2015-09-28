@@ -8,19 +8,23 @@
 
 import UIKit
 import XCTest
-import KeychainAPI
+@testable import KeychainAPI
 
 class KeychainTests: XCTestCase
 {
-    var keychain:Keychain
-    var defaultAccount:Account
-
+    let defaultUserName = "justinw@me.com"
+    var keychain:Keychain = Keychain(service: "com.secondgear.keychainapi.tests", accessibility: Accessibility.WhenUnlocked)
+    var defaultAccount:Account = Account(userName:"", secret: "lovesecretsexgod")
+    
+    
+    
     override func setUp()
     {
         super.setUp()
-        self.keychain = Keychain(service: "com.secondgear.keychainapi.tests", accessibility: Accessibility.WhenUnlocked)
-        self.defaultAccount = Account(userName: "justinw@me.com", secret: "lovesecretsexgod")
+        print("========do setUp=========")
 
+        self.keychain = Keychain(service: "com.secondgear.keychainapi.tests", accessibility: Accessibility.WhenUnlocked)
+        self.defaultAccount = Account(userName: defaultUserName, secret: "lovesecretsexgod")
         self.keychain.add(self.defaultAccount)
     }
     
@@ -43,29 +47,29 @@ class KeychainTests: XCTestCase
 
     func testFetchingExistingAccount()
     {
-        let account:Account = self.keychain.accountFor("justinw@me.com")
+        let account:Account = self.keychain.accountFor(defaultUserName)
 
         XCTAssertNotNil(account)
-        XCTAssertEqual(account.userName, "justinw@me.com")
+        XCTAssertEqual(account.userName, defaultUserName)
     }
 
     func testUpdatingExistingAccount()
     {
         let account:Account = self.defaultAccount
-        let oldPass = account.secret
-        
         account.secret = "newsecret"
+        
         let result = self.keychain.update(account)
-        let refeched:Account = self.keychain.accountFor("justinw@me.com")
+        let refeched:Account = self.keychain.accountFor(defaultUserName)
         
         XCTAssertTrue(result)
-        XCTAssertEqual(refeched.secret!, account.secret!)
+        XCTAssertEqual(refeched.secret, account.secret)
     }
 
     func testRemovingExistingAccount()
     {
         let newAccount:Account = Account(userName: "jdoe@keychain.io", secret: "s3kr37")
-        self.keychain.add(newAccount)
+        let res = self.keychain.add(newAccount)
+        XCTAssertTrue(res)
         
         let result = self.keychain.remove(newAccount)
         XCTAssertTrue(result)

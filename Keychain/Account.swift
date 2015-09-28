@@ -59,11 +59,12 @@ public class Account
             AccountAttribute : userName,
         ] as NSMutableDictionary
         
-        var passwordData: NSData = NSData()
+        //var passwordData: NSData = NSData()
         if let password = self.secret
         {
-            passwordData = password.dataUsingEncoding(NSUTF8StringEncoding)!
-            attributes[ValueDataAttribute] = passwordData
+           // passwordData = password.dataUsingEncoding(NSUTF8StringEncoding)!
+           // attributes[ValueDataAttribute] = passwordData
+             attributes[ValueDataAttribute]  = password.dataUsingEncoding(NSUTF8StringEncoding)!
         }
         
         return attributes;

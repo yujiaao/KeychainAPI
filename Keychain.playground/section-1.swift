@@ -9,4 +9,7 @@ keychain.add(userAccount)
 let fetchedAccount:Account = keychain.accountFor("justinw@me.com")
 fetchedAccount.secret = "newpassword"
 keychain.update(fetchedAccount)
+
+let fetAccount = keychain.accountFor("justinw@me.com");
+
 keychain.remove(fetchedAccount)
